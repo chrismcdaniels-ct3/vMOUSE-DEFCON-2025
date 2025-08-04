@@ -39,5 +39,15 @@ amplify_outputs.json
 *.7z
 *.rar
 
-# Keep Unity WebGL build files and images for deployment
-# These are needed for the application to work
+# Exclude Unity builds that aren't needed for deployment
+unity-webgl-platform/defcon_rover/
+unity-webgl-platform/defcon_vmouse/
+unity-webgl-platform/vmouse_builds/
+unity-webgl-platform/OneDrive_4_8-4-2025/
+
+# Test images
+unity-webgl-platform/*.png
+unity-webgl-platform/homepage-debug.png
+unity-webgl-platform/unity-*.png
+
+# Keep only the Unity builds in public folder
