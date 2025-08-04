@@ -79,7 +79,7 @@ export default function UnityGamePage() {
                 ? 'from-purple-400 to-purple-600' 
                 : 'from-blue-400 to-blue-600'
             }`}>
-              {gameId === 'vmouse' ? 'vMOUSE' : 'vROVER'}
+              {gameId === 'vmouse' ? 'vMOUSE Drone' : 'vMOUSE Rover'}
             </span>
           </h1>
           <p className="text-xl text-gray-300">

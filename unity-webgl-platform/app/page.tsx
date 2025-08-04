@@ -52,19 +52,21 @@ export default function HomePage() {
             <div 
               className="relative bg-gradient-to-br from-purple-900/50 to-purple-800/30 backdrop-blur-xl rounded-3xl p-8 border border-purple-500/20 shadow-2xl transition-all duration-500 hover:scale-105 hover:shadow-purple-500/25 hover:border-purple-400/40"
               style={{
-                transform: `perspective(1000px) rotateY(${(mousePosition.x - window.innerWidth / 2) * 0.01}deg) rotateX(${-(mousePosition.y - window.innerHeight / 2) * 0.01}deg)`
+                transform: typeof window !== 'undefined' 
+                  ? `perspective(1000px) rotateY(${(mousePosition.x - window.innerWidth / 2) * 0.01}deg) rotateX(${-(mousePosition.y - window.innerHeight / 2) * 0.01}deg)`
+                  : 'perspective(1000px)'
               }}
             >
               {/* Glow effect */}
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-purple-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               
               {/* Image */}
-              <div className="relative h-48 w-full mb-6 rounded-2xl overflow-hidden bg-gradient-to-br from-purple-600/20 to-purple-800/20">
+              <div className="relative h-64 w-full mb-6 rounded-2xl overflow-hidden bg-gradient-to-br from-purple-600/20 to-purple-800/20">
                 <Image
                   src="/mouse-drone.png"
-                  alt="MOUSE Drone"
+                  alt="vMOUSE Drone"
                   fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-700"
+                  className="object-contain p-4 group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
               </div>
@@ -72,7 +74,7 @@ export default function HomePage() {
               {/* Content */}
               <div className="relative">
                 <h2 className="text-4xl font-bold text-white mb-3 group-hover:text-purple-300 transition-colors">
-                  vMOUSE
+                  vMOUSE Drone
                 </h2>
                 <p className="text-gray-400 text-lg leading-relaxed group-hover:text-gray-300 transition-colors">
                   Experience precision drone piloting in immersive virtual environments
@@ -107,19 +109,21 @@ export default function HomePage() {
             <div 
               className="relative bg-gradient-to-br from-blue-900/50 to-blue-800/30 backdrop-blur-xl rounded-3xl p-8 border border-blue-500/20 shadow-2xl transition-all duration-500 hover:scale-105 hover:shadow-blue-500/25 hover:border-blue-400/40"
               style={{
-                transform: `perspective(1000px) rotateY(${(mousePosition.x - window.innerWidth / 2) * 0.01}deg) rotateX(${-(mousePosition.y - window.innerHeight / 2) * 0.01}deg)`
+                transform: typeof window !== 'undefined' 
+                  ? `perspective(1000px) rotateY(${(mousePosition.x - window.innerWidth / 2) * 0.01}deg) rotateX(${-(mousePosition.y - window.innerHeight / 2) * 0.01}deg)`
+                  : 'perspective(1000px)'
               }}
             >
               {/* Glow effect */}
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-blue-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               
               {/* Image */}
-              <div className="relative h-48 w-full mb-6 rounded-2xl overflow-hidden bg-gradient-to-br from-blue-600/20 to-blue-800/20">
+              <div className="relative h-64 w-full mb-6 rounded-2xl overflow-hidden bg-gradient-to-br from-blue-600/20 to-blue-800/20">
                 <Image
                   src="/mouse-rover.png"
-                  alt="MOUSE Rover"
+                  alt="vMOUSE Rover"
                   fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-700"
+                  className="object-contain p-4 group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
               </div>
@@ -127,7 +131,7 @@ export default function HomePage() {
               {/* Content */}
               <div className="relative">
                 <h2 className="text-4xl font-bold text-white mb-3 group-hover:text-blue-300 transition-colors">
-                  vROVER
+                  vMOUSE Rover
                 </h2>
                 <p className="text-gray-400 text-lg leading-relaxed group-hover:text-gray-300 transition-colors">
                   Navigate challenging terrains with advanced rover control systems
@@ -161,7 +165,7 @@ export default function HomePage() {
         {/* Footer */}
         <div className="mt-20 text-center animate-fade-in animation-delay-1000">
           <p className="text-gray-500 text-sm">
-            © {new Date().getFullYear()} DEF CON Unity Platform
+            © 2025 CT Cubed Inc
           </p>
           <p className="text-gray-600 text-xs mt-2">
             Built with cutting-edge WebGL technology
