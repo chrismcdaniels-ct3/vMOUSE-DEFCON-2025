@@ -3,16 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Script from 'next/script'
 
-interface UnityConfig {
-  dataUrl?: string
-  frameworkUrl: string
-  codeUrl: string
-  symbolsUrl?: string
-  streamingAssetsUrl?: string
-  companyName?: string
-  productName?: string
-  productVersion?: string
-}
+import type { UnityConfig } from '@/types/unity'
 
 interface UnityPlayerLocalProps {
   gameName: string
@@ -23,16 +14,6 @@ interface UnityPlayerLocalProps {
   onError?: (error: Error) => void
   className?: string
   canvasStyle?: React.CSSProperties
-}
-
-declare global {
-  interface Window {
-    createUnityInstance: (
-      canvas: HTMLCanvasElement,
-      config: UnityConfig,
-      onProgress?: (progress: number) => void
-    ) => Promise<any>
-  }
 }
 
 export default function UnityPlayerLocal({

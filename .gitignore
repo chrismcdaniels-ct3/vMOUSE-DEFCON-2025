@@ -1,36 +1,43 @@
-# WebGL builds and large files
-*.data
-*.wasm
-*.framework.js
-*.loader.js
-*.symbols.json
-
-# Unity build directories
-unity-webgl-platform/defcon_rover/Build/
-unity-webgl-platform/defcon_vmouse/Build/
-unity-webgl-platform/public/unity-builds/
-unity-webgl-platform/vmouse_builds/Build/
-
 # Node modules
 node_modules/
+
+# Build outputs
+.next/
+out/
+dist/
 
 # Test results
 test-results/
 
-# Large image files (if any)
-*.png
-*.jpg
-*.jpeg
-*.gif
-*.bmp
-*.tiff
+# Environment files
+.env
+.env.local
+.env.production
 
-# Other large files
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# AWS Amplify
+amplify/
+amplify_outputs.json
+.amplify/
+
+# Large archive files
 *.zip
 *.tar
-*.gz
-*.rar
 *.7z
+*.rar
 
-# Lock files (optional - you may want to keep these)
-# pnpm-lock.yaml
+# Keep Unity WebGL build files and images for deployment
+# These are needed for the application to work

@@ -3,15 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Script from 'next/script'
 
-interface UnityConfig {
-  dataUrl: string
-  frameworkUrl: string
-  codeUrl: string
-  streamingAssetsUrl?: string
-  companyName?: string
-  productName?: string
-  productVersion?: string
-}
+import type { UnityConfig } from '@/types/unity'
 
 interface UnityPlayerProps {
   buildPath: string
@@ -20,16 +12,6 @@ interface UnityPlayerProps {
   onLoaded?: () => void
   onError?: (error: Error) => void
   className?: string
-}
-
-declare global {
-  interface Window {
-    createUnityInstance: (
-      canvas: HTMLCanvasElement,
-      config: UnityConfig,
-      onProgress?: (progress: number) => void
-    ) => Promise<any>
-  }
 }
 
 export default function UnityPlayer({
@@ -109,7 +91,7 @@ export default function UnityPlayer({
         src={`${buildPath}/Build.loader.js`}
         strategy="afterInteractive"
         onLoad={handleScriptLoad}
-        onError={(e) => {
+        onError={(_e) => {
           const error = new Error('Failed to load Unity loader script')
           setError(error)
           setLoading(false)

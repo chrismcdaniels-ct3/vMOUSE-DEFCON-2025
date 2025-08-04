@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useParams } from 'next/navigation'
 import Link from 'next/link'
@@ -12,11 +12,11 @@ const UnityPlayerLocal = dynamic(() => import('@/components/unity/UnityPlayerLoc
 export default function UnityGamePage() {
   const params = useParams()
   const gameId = params.id as string
-  const [loading, setLoading] = useState(false)
+  const [_loading, _setLoading] = useState(false)
 
   const handleUnityLoaded = (unityInstance: any) => {
     console.log('Unity game loaded successfully')
-    setLoading(false)
+    _setLoading(false)
     
     // Make Unity instance globally available
     if (typeof window !== 'undefined') {
