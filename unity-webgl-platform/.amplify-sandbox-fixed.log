@@ -1,0 +1,54 @@
+
+5:09:36 PM ampx sandbox
+5:09:36 PM 
+5:09:36 PM Starts sandbox, watch mode for Amplify backend deployments
+5:09:36 PM 
+5:09:36 PM Commands:
+5:09:36 PM   ampx sandbox delete            Deletes sandbox environment
+5:09:36 PM   ampx sandbox secret <command>  Manage sandbox secrets
+5:09:36 PM   ampx sandbox seed              Seeds sandbox environment
+5:09:36 PM 
+5:09:36 PM Logs streaming
+5:09:36 PM       --stream-function-logs  Whether to stream function execution logs. Default
+5:09:36 PM                               : false. Use --logs-filter in addition to this fla
+5:09:36 PM                               g to stream specific function logs       [boolean]
+5:09:36 PM       --logs-filter           Regex pattern to filter logs from only matched fun
+5:09:36 PM                               ctions. E.g. to stream logs for a function, specif
+5:09:36 PM                               y it's name, and to stream logs from all functions
+5:09:36 PM                                starting with auth specify 'auth' Default: Stream
+5:09:36 PM                                all logs                                  [array]
+5:09:36 PM       --logs-out-file         File to append the streaming logs. The file is cre
+5:09:36 PM                               ated if it does not exist. Default: stdout[string]
+5:09:36 PM 
+5:09:36 PM Options:
+5:09:36 PM       --debug            Print debug logs to the console
+5:09:36 PM                                                       [boolean] [default: false]
+5:09:36 PM       --dir-to-watch     Directory to watch for file changes. All subdirectories
+5:09:36 PM                           and files will be included. Defaults to the amplify di
+5:09:36 PM                          rectory.                                       [string]
+5:09:36 PM       --exclude          An array of paths or glob patterns to ignore. Paths can
+5:09:36 PM                           be relative or absolute and can either be files or dir
+5:09:36 PM                          ectories                                        [array]
+5:09:36 PM       --identifier       An optional identifier to distinguish between different
+5:09:36 PM                           sandboxes. Default is the name of the system user exec
+5:09:36 PM                          uting the process                              [string]
+5:09:36 PM       --outputs-format   amplify_outputs file format
+5:09:36 PM                   [string] [choices: "mjs", "json", "json-mobile", "ts", "dart"]
+5:09:36 PM       --outputs-version  Version of the configuration. Version 0 represents clas
+5:09:36 PM                          sic amplify-cli config file amplify-configuration and 1
+5:09:36 PM                           represents newer config file amplify_outputs
+5:09:36 PM        [string] [choices: "0", "1", "1.1", "1.2", "1.3", "1.4"] [default: "1.4"]
+5:09:36 PM       --outputs-out-dir  A path to directory where amplify_outputs is written. I
+5:09:36 PM                          f not provided defaults to current process working dire
+5:09:36 PM                          ctory.                                         [string]
+5:09:36 PM       --profile          An AWS profile name.                           [string]
+5:09:36 PM       --once             Execute a single sandbox deployment without watching fo
+5:09:36 PM                          r future file changes                         [boolean]
+5:09:36 PM   -h, --help             Show help                                     [boolean]
+5:09:36 PM 
+
+[SSMCredentialsError] ExpiredTokenException: The security token included in the request is expired
+  ∟ Caused by: [ExpiredTokenException] The security token included in the request is expired
+Resolution: Make sure your AWS credentials are set up correctly and have permissions to call SSM:GetParameter
+
+

@@ -1,0 +1,101 @@
+version: '3.8'
+
+services:
+  # Main application service
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    container_name: unity-webgl-platform
+    volumes:
+      # Mount source code for hot reloading
+      - .:/app
+      # Exclude node_modules to use container's dependencies
+      - /app/node_modules
+      # Mount AWS credentials if needed
+      - ~/.aws:/home/nextjs/.aws:ro
+      # Mount pnpm store for faster installs
+      - pnpm-store:/app/.pnpm-store
+    ports:
+      # Next.js dev server
+      - "3002:3000"
+      # Amplify sandbox ports
+      - "3003:3002"
+      - "20003:20002"
+      # GraphQL endpoint
+      - "4001:4000"
+    environment:
+      # Development environment
+      NODE_ENV: development
+      # Enable hot reloading
+      WATCHPACK_POLLING: 'true'
+      CHOKIDAR_USEPOLLING: 'true'
+      # Amplify configuration
+      AWS_PROFILE: ${AWS_PROFILE:-ct3defcon}
+      AWS_REGION: ${AWS_REGION:-us-east-2}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_SESSION_TOKEN: ${AWS_SESSION_TOKEN}
+      # Next.js configuration
+      NEXT_TELEMETRY_DISABLED: 1
+      # Container user
+      USER: nextjs
+    networks:
+      - unity-network
+    stdin_open: true
+    tty: true
+    command: >
+      sh -c "
+        echo 'Starting Unity WebGL Platform Development Environment...' &&
+        echo 'To run Amplify sandbox: pnpm ampx sandbox' &&
+        echo 'Development server starting on http://localhost:3000' &&
+        pnpm run dev
+      "
+
+  # LocalStack for AWS services emulation (optional)
+  localstack:
+    image: localstack/localstack:latest
+    container_name: unity-localstack
+    ports:
+      - "4566:4566"
+      - "4571:4571"
+    environment:
+      - SERVICES=s3,dynamodb,cognito,lambda,appsync
+      - DEBUG=1
+      - DATA_DIR=/tmp/localstack/data
+      - LAMBDA_EXECUTOR=docker
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      - localstack-data:/tmp/localstack
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - unity-network
+    profiles:
+      - localstack
+
+  # DynamoDB Admin UI (optional)
+  dynamodb-admin:
+    image: aaronshaf/dynamodb-admin
+    container_name: unity-dynamodb-admin
+    ports:
+      - "8001:8001"
+    environment:
+      DYNAMO_ENDPOINT: "http://localstack:4566"
+      AWS_REGION: us-east-1
+      AWS_ACCESS_KEY_ID: test
+      AWS_SECRET_ACCESS_KEY: test
+    depends_on:
+      - localstack
+    networks:
+      - unity-network
+    profiles:
+      - localstack
+
+networks:
+  unity-network:
+    driver: bridge
+
+volumes:
+  pnpm-store:
+  localstack-data:

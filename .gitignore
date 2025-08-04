@@ -1,0 +1,36 @@
+# WebGL builds and large files
+*.data
+*.wasm
+*.framework.js
+*.loader.js
+*.symbols.json
+
+# Unity build directories
+unity-webgl-platform/defcon_rover/Build/
+unity-webgl-platform/defcon_vmouse/Build/
+unity-webgl-platform/public/unity-builds/
+unity-webgl-platform/vmouse_builds/Build/
+
+# Node modules
+node_modules/
+
+# Test results
+test-results/
+
+# Large image files (if any)
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.tiff
+
+# Other large files
+*.zip
+*.tar
+*.gz
+*.rar
+*.7z
+
+# Lock files (optional - you may want to keep these)
+# pnpm-lock.yaml
