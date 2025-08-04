@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "DEF CON vMOUSE",
-  description: "Unity WebGL Platform for DEF CON vMOUSE",
+  title: "DEF CON Unity Platform",
+  description: "Unity WebGL Platform for DEF CON vMOUSE and vROVER",
 };
 
 export default function RootLayout({

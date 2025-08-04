@@ -3,8 +3,9 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { getCurrentUser, signOut } from 'aws-amplify/auth'
-import { RiDashboardLine, RiSettings2Line, RiLogoutBoxLine, RiMenu2Line } from '@remixicon/react'
+import { getCurrentUser, signOut, fetchAuthSession } from 'aws-amplify/auth'
+import { RiDashboardLine, RiSettings2Line, RiLogoutBoxLine, RiMenu2Line, RiHome2Line } from '@remixicon/react'
+import AdminRoute from '@/components/auth/AdminRoute'
 import '@/lib/amplify'
 
 export default function AdminLayout({
@@ -24,6 +25,16 @@ export default function AdminLayout({
   async function checkAuth() {
     try {
       const currentUser = await getCurrentUser()
+      const session = await fetchAuthSession()
+      const groups = session.tokens?.idToken?.payload['cognito:groups'] as string[] | undefined
+      
+      // Check if user is in admin group
+      if (!groups || !groups.includes('admin')) {
+        console.log('User is not an admin')
+        router.push('/')
+        return
+      }
+      
       setUser(currentUser)
     } catch (error) {
       console.error('Not authenticated:', error)
@@ -76,6 +87,13 @@ export default function AdminLayout({
         </div>
 
         <nav className="px-4">
+          <Link
+            href="/"
+            className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300"
+          >
+            <RiHome2Line className="w-5 h-5" />
+            Home
+          </Link>
           <Link
             href="/dashboard"
             className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300"
