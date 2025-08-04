@@ -136,15 +136,15 @@ export default function UnityPlayerLocal({
   return (
     <div className={`relative ${className}`}>
       <Script
-        src={`${buildPath}/Build/${gameName}.loader.js`}
+        src={config?.loaderUrl || `${buildPath}/Build/${gameName}.loader.js`}
         strategy="afterInteractive"
         onLoad={() => {
-          console.log(`Unity loader script loaded from: ${buildPath}/Build/${gameName}.loader.js`)
+          console.log(`Unity loader script loaded from: ${config?.loaderUrl || `${buildPath}/Build/${gameName}.loader.js`}`)
           handleScriptLoad()
         }}
         onError={(e) => {
-          console.error(`Failed to load Unity loader script from: ${buildPath}/Build/${gameName}.loader.js`, e)
-          const error = new Error(`Failed to load Unity loader script: ${buildPath}/Build/${gameName}.loader.js`)
+          console.error(`Failed to load Unity loader script from: ${config?.loaderUrl || `${buildPath}/Build/${gameName}.loader.js`}`, e)
+          const error = new Error(`Failed to load Unity loader script: ${config?.loaderUrl || `${buildPath}/Build/${gameName}.loader.js`}`)
           setError(error)
           setLoading(false)
           onError?.(error)
