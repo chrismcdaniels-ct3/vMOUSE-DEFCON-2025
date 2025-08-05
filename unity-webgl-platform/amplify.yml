@@ -3,11 +3,16 @@ frontend:
   phases:
     preBuild:
       commands:
-        - npm install -g pnpm
-        - pnpm install
+        - npm install -g pnpm@10.13.1
+        - pnpm install --frozen-lockfile
+        - echo "Node version:" && node --version
+        - echo "PNPM version:" && pnpm --version
     build:
       commands:
+        - export NODE_ENV=production
         - pnpm run build
+        - echo "Build completed successfully"
+        - ls -la .next/ || echo ".next directory not found"
   artifacts:
     baseDirectory: .next
     files:
@@ -16,17 +21,26 @@ frontend:
     paths:
       - node_modules/**/*
       - .next/cache/**/*
+      - .pnpm-store/**/*
   customHeaders:
     - pattern: '**/*.wasm'
       headers:
         - key: 'Content-Type'
           value: 'application/wasm'
+        - key: 'Cross-Origin-Embedder-Policy'
+          value: 'require-corp'
+        - key: 'Cross-Origin-Opener-Policy'
+          value: 'same-origin'
     - pattern: '**/*.wasm.gz'
       headers:
         - key: 'Content-Type'
           value: 'application/wasm'
         - key: 'Content-Encoding'
           value: 'gzip'
+        - key: 'Cross-Origin-Embedder-Policy'
+          value: 'require-corp'
+        - key: 'Cross-Origin-Opener-Policy'
+          value: 'same-origin'
     - pattern: '**/*.js.gz'
       headers:
         - key: 'Content-Type'
@@ -39,3 +53,13 @@ frontend:
           value: 'application/octet-stream'
         - key: 'Content-Encoding'
           value: 'gzip'
+    - pattern: '**/*.data'
+      headers:
+        - key: 'Content-Type'
+          value: 'application/octet-stream'
+    - pattern: '/api/**'
+      headers:
+        - key: 'Cross-Origin-Embedder-Policy'
+          value: 'require-corp'
+        - key: 'Cross-Origin-Opener-Policy'
+          value: 'same-origin'
