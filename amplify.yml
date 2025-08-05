@@ -18,6 +18,7 @@ frontend:
         - cp -r public .next/standalone/
         - cp -r .next/static .next/standalone/.next/
         - cp .next/required-server-files.json .next/standalone/
+        - cp .next/trace .next/standalone/.next/ || echo "No trace file found"
   artifacts:
     baseDirectory: .next/standalone
     files:
