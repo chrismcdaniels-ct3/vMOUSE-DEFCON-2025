@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic'
 import { useParams } from 'next/navigation'
 import Link from 'next/link'
 import FlyingControls from '@/components/ui/FlyingControls'
+import RoverControls from '@/components/ui/RoverControls'
 
 const UnityPlayerLocal = dynamic(() => import('@/components/unity/UnityPlayerLocal'), {
   ssr: false,
@@ -57,13 +58,13 @@ export default function UnityGamePage() {
         <div className={`absolute inset-0 bg-gradient-to-br ${
           gameId === 'vmouse' 
             ? 'from-gray-900/30 via-black to-orange-900/10' 
-            : 'from-blue-900/20 via-black to-blue-800/10'
+            : 'from-gray-900/30 via-black to-orange-900/10'
         }`} />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-800/10 via-transparent to-transparent" />
         
         {/* Animated orb */}
         <div className={`absolute top-1/4 left-1/4 w-96 h-96 ${
-          gameId === 'vmouse' ? 'bg-orange-600' : 'bg-blue-600'
+          gameId === 'vmouse' ? 'bg-orange-600' : 'bg-orange-600'
         } rounded-full filter blur-[128px] opacity-20 animate-pulse`} />
         
         {/* Grid pattern overlay */}
@@ -78,7 +79,7 @@ export default function UnityGamePage() {
             <span className={`bg-clip-text text-transparent bg-gradient-to-r ${
               gameId === 'vmouse' 
                 ? 'from-orange-400 to-gray-400' 
-                : 'from-blue-400 to-blue-600'
+                : 'from-orange-400 to-gray-400'
             }`}>
               {gameId === 'vmouse' ? 'vMOUSE Drone' : 'vMOUSE Rover'}
             </span>
@@ -94,11 +95,11 @@ export default function UnityGamePage() {
         <div className={`bg-gradient-to-br ${
           gameId === 'vmouse' 
             ? 'from-gray-900/40 to-gray-800/30' 
-            : 'from-blue-900/30 to-blue-800/20'
+            : 'from-gray-900/40 to-gray-800/30'
         } backdrop-blur-xl rounded-3xl p-6 border ${
           gameId === 'vmouse' 
             ? 'border-orange-500/20' 
-            : 'border-blue-500/20'
+            : 'border-orange-500/20'
         } shadow-2xl animate-fade-in animation-delay-1000`}>
           {gameId === 'vmouse' ? (
             <UnityPlayerLocal
@@ -139,10 +140,14 @@ export default function UnityGamePage() {
           )}
         </div>
 
-        {/* Flying Controls - Only for vMOUSE (drone) */}
-        {gameId === 'vmouse' && (
+        {/* Controls - Different for each game type */}
+        {gameId === 'vmouse' ? (
           <div className="mt-8">
             <FlyingControls className="animate-fade-in animation-delay-2000" />
+          </div>
+        ) : (
+          <div className="mt-8">
+            <RoverControls className="animate-fade-in animation-delay-2000" />
           </div>
         )}
 
@@ -150,36 +155,36 @@ export default function UnityGamePage() {
         <div className={`mt-8 bg-gradient-to-br ${
           gameId === 'vmouse' 
             ? 'from-gray-900/40 to-gray-800/30' 
-            : 'from-blue-900/30 to-blue-800/20'
+            : 'from-gray-900/40 to-gray-800/30'
         } backdrop-blur-xl rounded-3xl p-6 border ${
           gameId === 'vmouse' 
             ? 'border-orange-500/20' 
-            : 'border-blue-500/20'
+            : 'border-orange-500/20'
         } shadow-2xl animate-fade-in animation-delay-3000`}>
-          <h2 className="text-2xl font-bold text-white mb-4 flex items-center">
+          <h2 className="text-2xl font-bold text-white mb-4 flex items-center justify-center">
             <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             Game Information
           </h2>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-6 text-center">
             <div>
               <h3 className={`text-sm font-medium ${
-                gameId === 'vmouse' ? 'text-orange-400' : 'text-blue-400'
+                gameId === 'vmouse' ? 'text-orange-400' : 'text-orange-400'
               }`}>Platform</h3>
               <p className="text-gray-300">Unity WebGL Platform</p>
             </div>
             <div>
               <h3 className={`text-sm font-medium ${
-                gameId === 'vmouse' ? 'text-orange-400' : 'text-blue-400'
+                gameId === 'vmouse' ? 'text-orange-400' : 'text-orange-400'
               }`}>Version</h3>
-              <p className="text-gray-300">DEF CON Edition v0.1</p>
+              <p className="text-gray-300">DEF CON Edition 2025.v0.1</p>
             </div>
             <div>
               <h3 className={`text-sm font-medium ${
-                gameId === 'vmouse' ? 'text-orange-400' : 'text-blue-400'
+                gameId === 'vmouse' ? 'text-orange-400' : 'text-orange-400'
               }`}>Mode</h3>
-              <p className="text-gray-300">Multiplayer Real-time</p>
+              <p className="text-gray-300">CTF Single Player</p>
             </div>
           </div>
         </div>
@@ -189,7 +194,7 @@ export default function UnityGamePage() {
           <Link 
             href="/" 
             className={`inline-flex items-center text-sm ${
-              gameId === 'vmouse' ? 'text-orange-400 hover:text-orange-300' : 'text-blue-400 hover:text-blue-300'
+              gameId === 'vmouse' ? 'text-orange-400 hover:text-orange-300' : 'text-orange-400 hover:text-orange-300'
             } transition-colors`}
           >
             <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
