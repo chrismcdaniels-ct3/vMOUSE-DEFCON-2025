@@ -146,9 +146,9 @@ export default function UnityGamePage() {
               useS3={useS3}
               s3BaseUrl={s3BaseUrl}
               config={useS3 ? {
-                dataUrl: `${s3BaseUrl}/defcon_rover/Build/defcon_rover.data`,
-                frameworkUrl: `${s3BaseUrl}/defcon_rover/Build/defcon_rover.framework.js`,
-                codeUrl: `${s3BaseUrl}/defcon_rover/Build/defcon_rover.wasm`,
+                dataUrl: `${s3BaseUrl}/defcon_rover/Build/defcon_rover.data.gz`,
+                frameworkUrl: `${s3BaseUrl}/defcon_rover/Build/defcon_rover.framework.js.gz`,
+                codeUrl: `${s3BaseUrl}/defcon_rover/Build/defcon_rover.wasm.gz`,
                 loaderUrl: `${s3BaseUrl}/defcon_rover/Build/defcon_rover.loader.js`,
                 streamingAssetsUrl: `${s3BaseUrl}/defcon_rover/StreamingAssets`,
                 companyName: 'CTCubed',

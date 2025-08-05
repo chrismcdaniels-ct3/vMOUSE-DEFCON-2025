@@ -1,0 +1,161 @@
+2025-08-05T15:26:09.614Z [INFO]: # Build environment configured with Standard build compute type: 8GiB Memory, 4vCPUs, 128GB Disk Space
+2025-08-05T15:26:10.124Z [INFO]: # Cloning repository: git@github.com:chrismcdaniels-ct3/vMOUSE-DEFCON-2025.git
+2025-08-05T15:26:11.568Z [INFO]: 
+2025-08-05T15:26:11.569Z [INFO]: Cloning into 'vMOUSE-DEFCON-2025'...
+2025-08-05T15:26:11.569Z [INFO]: # Switching to commit: be8c761988656cbfe2fbea3230c6f6ca8f9191e6
+2025-08-05T15:26:11.649Z [INFO]: Note: switching to 'be8c761988656cbfe2fbea3230c6f6ca8f9191e6'.
+                                 You are in 'detached HEAD' state. You can look around, make experimental
+                                 changes and commit them, and you can discard any commits you make in this
+                                 state without impacting any branches by switching back to a branch.
+                                 If you want to create a new branch to retain commits you create, you may
+                                 do so (now or later) by using -c with the switch command. Example:
+                                 git switch -c <new-branch-name>
+                                 Or undo this operation with:
+                                 git switch -
+                                 Turn off this advice by setting config variable advice.detachedHead to false
+                                 HEAD is now at be8c761 Remove Content-Encoding headers from amplify.yml
+2025-08-05T15:26:11.730Z [INFO]: Successfully cleaned up Git credentials
+2025-08-05T15:26:11.730Z [INFO]: # Checking for Git submodules at: /codebuild/output/src1527302707/src/vMOUSE-DEFCON-2025/.gitmodules
+2025-08-05T15:26:11.738Z [INFO]: # Retrieving environment cache...
+2025-08-05T15:26:11.791Z [WARNING]: ! Unable to write cache: {"code":"ERR_BAD_REQUEST","message":"Request failed with status code 404"})}
+2025-08-05T15:26:11.791Z [INFO]: ---- Setting Up SSM Secrets ----
+2025-08-05T15:26:11.792Z [INFO]: SSM params {"Path":"/amplify/d1t02l7s9hwtil/main/","WithDecryption":true}
+2025-08-05T15:26:15.419Z [INFO]: # Patching NPM package '@aws-amplify/cli' from 13.0.0 to 14.0.0...
+2025-08-05T15:26:54.939Z [INFO]: # Installed '@aws-amplify/cli@14.0.0'
+2025-08-05T15:26:55.042Z [INFO]: # Done patching NPM package '@aws-amplify/cli' to version 14.0.0
+2025-08-05T15:26:55.058Z [INFO]: # Retrieving cache...
+2025-08-05T15:27:34.239Z [INFO]: # Extracting cache...
+2025-08-05T15:28:02.605Z [INFO]: # Extraction completed
+2025-08-05T15:28:02.892Z [INFO]: # Retrieved cache
+2025-08-05T15:28:05.863Z [INFO]: ## Starting Backend Build
+                                 ## Checking for associated backend environment...
+                                 ## No backend environment association found, continuing...
+                                 ## Completed Backend Build
+2025-08-05T15:28:05.868Z [INFO]: {"backendDuration": 0}
+                                 ## Starting Frontend Build
+                                 # Starting phase: preBuild
+                                 # Executing command: npm install -g pnpm@10.13.1
+2025-08-05T15:28:06.985Z [INFO]: added 1 package in 1s
+2025-08-05T15:28:06.985Z [INFO]: 1 package is looking for funding
+                                 run `npm fund` for details
+2025-08-05T15:28:06.993Z [INFO]: # Executing command: pnpm install --frozen-lockfile
+2025-08-05T15:28:07.573Z [INFO]: Recreating /codebuild/output/src1527302707/src/vMOUSE-DEFCON-2025/node_modules
+2025-08-05T15:28:10.541Z [INFO]: Lockfile is up to date, resolution step is skipped
+2025-08-05T15:28:10.589Z [INFO]: Progress: resolved 1, reused 0, downloaded 0, added 0
+2025-08-05T15:28:10.655Z [INFO]: Packages: +339
+                                 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2025-08-05T15:28:11.609Z [INFO]: Progress: resolved 339, reused 0, downloaded 36, added 19
+2025-08-05T15:28:12.610Z [INFO]: Progress: resolved 339, reused 0, downloaded 47, added 23
+2025-08-05T15:28:13.616Z [INFO]: Progress: resolved 339, reused 0, downloaded 160, added 154
+2025-08-05T15:28:14.616Z [INFO]: Progress: resolved 339, reused 0, downloaded 327, added 319
+2025-08-05T15:28:14.661Z [INFO]: Progress: resolved 339, reused 0, downloaded 339, added 339, done
+2025-08-05T15:28:14.881Z [INFO]: dependencies:
+                                 + clsx 2.1.1
+                                 + next 15.4.5
+                                 + react 19.1.0
+                                 + react-dom 19.1.0
+                                 + tailwind-merge 3.3.1
+                                 devDependencies:
+                                 + @eslint/eslintrc 3.3.1
+                                 + @playwright/test 1.54.2
+                                 + @tailwindcss/postcss 4.1.11
+                                 + @types/node 20.19.9
+                                 + @types/react 19.1.9
+                                 + @types/react-dom 19.1.7
+                                 + eslint 9.32.0
+                                 + eslint-config-next 15.4.5
+                                 + playwright 1.54.2
+                                 + tailwindcss 4.1.11
+                                 + typescript 5.8.3
+                                 ╭ Warning ─────────────────────────────────────────────────────────────────────╮
+                                 │                                                                              │
+                                 │   Ignored build scripts: @tailwindcss/oxide, sharp, unrs-resolver.           │
+                                 │   Run "pnpm approve-builds" to pick which dependencies should be allowed     │
+                                 │   to run scripts.                                                            │
+                                 │                                                                              │
+                                 ╰──────────────────────────────────────────────────────────────────────────────╯
+2025-08-05T15:28:14.905Z [INFO]: Done in 7.8s using pnpm v10.13.1
+2025-08-05T15:28:14.945Z [INFO]: # Executing command: echo "Node version:" && node --version
+                                 Node version:
+2025-08-05T15:28:14.951Z [INFO]: v18.20.8
+2025-08-05T15:28:14.952Z [INFO]: # Executing command: echo "PNPM version:" && pnpm --version
+                                 PNPM version:
+2025-08-05T15:28:15.383Z [INFO]: 10.13.1
+2025-08-05T15:28:15.389Z [INFO]: # Completed phase: preBuild
+                                 # Starting phase: build
+2025-08-05T15:28:15.389Z [INFO]: # Executing command: export NODE_ENV=production
+                                 # Executing command: echo "NEXT_PUBLIC_UNITY_USE_S3=${NEXT_PUBLIC_UNITY_USE_S3}"
+                                 NEXT_PUBLIC_UNITY_USE_S3=
+                                 # Executing command: echo "NEXT_PUBLIC_UNITY_BASE_URL=${NEXT_PUBLIC_UNITY_BASE_URL}"
+                                 NEXT_PUBLIC_UNITY_BASE_URL=
+                                 # Executing command: pnpm run build
+2025-08-05T15:28:15.793Z [INFO]: > unity-webgl-platform@0.1.0 build /codebuild/output/src1527302707/src/vMOUSE-DEFCON-2025
+                                 > next build
+2025-08-05T15:28:16.820Z [INFO]: ▲ Next.js 15.4.5
+2025-08-05T15:28:16.820Z [INFO]: 
+2025-08-05T15:28:16.849Z [INFO]: Creating an optimized production build ...
+2025-08-05T15:28:28.164Z [INFO]: ✓ Compiled successfully in 7.0s
+2025-08-05T15:28:28.180Z [INFO]: Linting and checking validity of types ...
+2025-08-05T15:28:31.961Z [INFO]: Collecting page data ...
+2025-08-05T15:28:33.606Z [INFO]: Generating static pages (0/5) ...
+2025-08-05T15:28:34.342Z [INFO]: Generating static pages (1/5)
+2025-08-05T15:28:34.343Z [INFO]: Generating static pages (2/5)
+                                 Generating static pages (3/5)
+                                 ✓ Generating static pages (5/5)
+2025-08-05T15:28:35.173Z [INFO]: Finalizing page optimization ...
+2025-08-05T15:28:35.177Z [INFO]: Collecting build traces ...
+2025-08-05T15:28:56.481Z [INFO]: 
+2025-08-05T15:28:56.487Z [INFO]: Route (app)                                 Size  First Load JS
+                                 ┌ ○ /                                    7.17 kB         111 kB
+                                 ├ ○ /_not-found                            989 B         101 kB
+                                 ├ ƒ /api/unity-gz/[...path]                123 B         100 kB
+                                 └ ƒ /unity/[id]                          3.55 kB         107 kB
+                                 + First Load JS shared by all             100 kB
+                                 ├ chunks/574-caf9cd15a48ff649.js         44 kB
+                                 ├ chunks/71a455bc-34e95ccf4e983167.js  54.1 kB
+                                 └ other shared chunks (total)          1.96 kB
+                                 ○  (Static)   prerendered as static content
+                                 ƒ  (Dynamic)  server-rendered on demand
+2025-08-05T15:28:56.524Z [INFO]: # Executing command: echo "Build completed successfully"
+                                 Build completed successfully
+2025-08-05T15:28:56.524Z [INFO]: # Executing command: ls -la .next/standalone || echo "Standalone output not found"
+2025-08-05T15:28:56.525Z [INFO]: total 16
+                                 drwxr-xr-x 4 amplify amplify   76 Aug  5 15:28 .
+                                 drwxr-xr-x 8 amplify amplify 4096 Aug  5 15:28 ..
+                                 drwxr-xr-x 3 amplify amplify  280 Aug  5 15:28 .next
+                                 drwxr-xr-x 3 amplify amplify   62 Aug  5 15:28 node_modules
+                                 -rw-r--r-- 1 amplify amplify 1237 Aug  5 15:28 package.json
+                                 -rw-r--r-- 1 amplify amplify 6421 Aug  5 15:28 server.js
+2025-08-05T15:28:56.526Z [INFO]: # Executing command: cp -r public .next/standalone/
+2025-08-05T15:28:56.529Z [INFO]: # Executing command: cp -r .next/static .next/standalone/.next/
+2025-08-05T15:28:56.531Z [INFO]: # Completed phase: build
+                                 ## Completed Frontend Build
+2025-08-05T15:28:56.573Z [INFO]: ## Build completed successfully
+2025-08-05T15:28:56.575Z [INFO]: # Starting caching...
+2025-08-05T15:28:56.584Z [INFO]: # Creating cache artifact...
+2025-08-05T15:29:17.694Z [INFO]: # Created cache artifact
+2025-08-05T15:29:17.782Z [INFO]: # Uploading cache artifact...
+2025-08-05T15:29:35.883Z [INFO]: # Uploaded cache artifact
+2025-08-05T15:29:35.993Z [INFO]: # Caching completed
+2025-08-05T15:29:35.996Z [INFO]: Found customHeaders section in amplify.yml, applying custom headers...
+2025-08-05T15:29:35.996Z [WARNING]: [DEPRECATION WARNING] using amplify.yml to modify custom headers is being deprecated.
+2025-08-05T15:29:35.996Z [WARNING]: Going forward, in order to configure your custom headers via deploy, please use customHttp.yml instead.
+2025-08-05T15:29:35.996Z [WARNING]: Learn more: https://docs.aws.amazon.com/amplify/latest/userguide/custom-headers.html
+2025-08-05T15:29:35.996Z [INFO]: # Found custom headers config file.
+2025-08-05T15:29:36.131Z [WARNING]: ⚠️ NODE.JS DEPRECATION WARNING
+                                    ================================================================================
+                                    Node.js 18 support ends soon.
+                                    Your application uses Node.js v18.20.8.
+                                    ------------------------------
+                                    Starting September 15, 2025, AWS Amplify Console will end support for Node.js 14, Node.js 16 and Node.js 18.
+                                    After this date, you will not be able to deploy updates to your application until you upgrade your Node version.
+                                    Please update all applications that use Node.js 14 / Node.js 16 / Node.js 18 to Node.js 20+ before September 15, 2025.
+                                    Please note that, already deployed applications with Node.js 14/16/18 will continue to run, and will not be impacted unless you need to deploy updates.
+                                    We recommend testing your application on a new branch before upgrading to ensure all app functionality works. For migration guidelines, visit: https://docs.aws.amazon.com/amplify/latest/userguide/troubleshooting-general.html#update-node-version
+                                    A list of affected resources can be found in the "Affected resources" tab of the AWS Health Dashboard.
+                                    If you have any questions or concerns, please reach out to AWS Support: https://aws.amazon.com/support
+                                    ================================================================================
+2025-08-05T15:29:36.135Z [ERROR]: !!! CustomerError: Can't find required-server-files.json in build output directory
+2025-08-05T15:29:36.135Z [INFO]: # Starting environment caching...
+2025-08-05T15:29:36.136Z [INFO]: # Environment caching completed
+
