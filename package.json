@@ -16,8 +16,14 @@
     "docker:clean": "docker-compose down -v --rmi all"
   },
   "dependencies": {
+    "@auth/core": "^0.40.0",
+    "@aws-amplify/auth": "^6.14.0",
+    "@aws-amplify/storage": "^6.9.4",
+    "@aws-sdk/client-cognito-identity-provider": "^3.859.0",
+    "@aws-sdk/client-s3": "^3.859.0",
     "clsx": "^2.1.1",
     "next": "15.4.5",
+    "next-auth": "^4.24.11",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "tailwind-merge": "^3.3.1"

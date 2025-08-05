@@ -167,6 +167,14 @@ export default function HomePage() {
           <p className="text-gray-600 text-xs mt-2">
             Developed by the experts at CT Cubed Inc. Interested in custom training? Let's talk.
           </p>
+          {/* Hidden admin link - keyboard shortcut: Ctrl+Shift+A */}
+          <Link 
+            href="/admin" 
+            className="inline-block mt-4 text-gray-900 hover:text-gray-800 text-xs opacity-0 hover:opacity-10 transition-opacity"
+            aria-hidden="true"
+          >
+            Admin
+          </Link>
         </div>
       </div>
 
