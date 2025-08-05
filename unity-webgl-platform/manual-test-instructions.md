@@ -10,8 +10,8 @@
 ### 1. Login to Admin Dashboard
 1. Open browser and navigate to: http://localhost:3002/dashboard
 2. Login with credentials:
-   - Email: chris.mcdaniels@ctcubed.com
-   - Password: Superman!2Superman!2
+   - Email: [REDACTED - Use environment variables]
+   - Password: [REDACTED - Use environment variables]
 
 ### 2. Upload Unity Game
 1. Click the "Add Game" button in the dashboard
