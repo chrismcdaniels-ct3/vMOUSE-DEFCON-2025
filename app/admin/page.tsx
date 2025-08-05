@@ -2,8 +2,7 @@
 
 import { useSession, signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
-import { S3Client, ListObjectsV2Command, PutObjectCommand, DeleteObjectCommand } from '@aws-sdk/client-s3'
+import { useEffect, useState, useCallback } from 'react'
 
 interface S3File {
   key: string
@@ -19,16 +18,7 @@ export default function AdminPage() {
   const [uploading, setUploading] = useState(false)
   const [selectedGame, setSelectedGame] = useState<'drone' | 'rover'>('drone')
 
-  useEffect(() => {
-    if (status === 'loading') return
-    if (!session) {
-      router.push('/admin/login')
-    } else {
-      loadFiles()
-    }
-  }, [session, status, router])
-
-  const loadFiles = async () => {
+  const loadFiles = useCallback(async () => {
     try {
       const response = await fetch(`/api/admin/s3/list?prefix=defcon_${selectedGame}/`)
       const data = await response.json()
@@ -38,7 +28,16 @@ export default function AdminPage() {
     } finally {
       setLoading(false)
     }
-  }
+  }, [selectedGame])
+
+  useEffect(() => {
+    if (status === 'loading') return
+    if (!session) {
+      router.push('/admin/login')
+    } else {
+      loadFiles()
+    }
+  }, [session, status, router, loadFiles])
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]

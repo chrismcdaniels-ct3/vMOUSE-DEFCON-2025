@@ -165,7 +165,7 @@ export default function HomePage() {
             © 2025 CT Cubed Inc
           </p>
           <p className="text-gray-600 text-xs mt-2">
-            Developed by the experts at CT Cubed Inc. Interested in custom training? Let's talk.
+            Developed by the experts at CT Cubed Inc. Interested in custom training? Let&apos;s talk.
           </p>
           {/* Hidden admin link - keyboard shortcut: Ctrl+Shift+A */}
           <Link 
