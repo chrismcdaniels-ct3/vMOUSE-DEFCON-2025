@@ -39,8 +39,6 @@ frontend:
       headers:
         - key: 'Content-Type'
           value: 'application/wasm'
-        - key: 'Content-Encoding'
-          value: 'gzip'
         - key: 'Cross-Origin-Embedder-Policy'
           value: 'require-corp'
         - key: 'Cross-Origin-Opener-Policy'
@@ -49,14 +47,10 @@ frontend:
       headers:
         - key: 'Content-Type'
           value: 'application/javascript'
-        - key: 'Content-Encoding'
-          value: 'gzip'
     - pattern: '**/*.data.gz'
       headers:
         - key: 'Content-Type'
           value: 'application/octet-stream'
-        - key: 'Content-Encoding'
-          value: 'gzip'
     - pattern: '**/*.data'
       headers:
         - key: 'Content-Type'
