@@ -18,7 +18,7 @@ frontend:
         - cp -r public .next/standalone/
         - cp -r .next/static .next/standalone/.next/
         - cp .next/required-server-files.json .next/standalone/
-        - cp .next/*.nft.json .next/standalone/.next/ || echo "No nft.json files found"
+        - cp .next/*.nft.json .next/standalone/ || echo "No nft.json files found"
   artifacts:
     baseDirectory: .next/standalone
     files:
