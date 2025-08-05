@@ -2,6 +2,8 @@
 
 A modern web platform for hosting Unity WebGL applications with AWS Amplify Gen 2.
 
+<!-- Last updated: Security patch applied -->
+
 ## Features
 
 - 🎮 Multiple Unity WebGL applications
