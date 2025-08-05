@@ -70,24 +70,6 @@ const nextConfig: NextConfig = {
   },
   
   output: 'standalone',
-  
-  experimental: {
-    esmExternals: false,
-  },
-  
-  webpack: (config) => {
-    config.module.rules.push({
-      test: /\.wasm$/,
-      type: 'webassembly/async',
-    });
-    
-    config.module.rules.push({
-      test: /\.data$/,
-      type: 'asset/resource',
-    });
-    
-    return config;
-  },
 };
 
 export default nextConfig;
