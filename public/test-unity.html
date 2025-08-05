@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | vMouse Direct Test</title>
+  </head>
+  <body style="text-align: center; padding: 0; border: 0; margin: 0;">
+    <h1>Direct Unity Test</h1>
+    <canvas id="unity-canvas" width=1024 height=576 tabindex="-1" style="width: 1024px; height: 576px; background: #231F20"></canvas>
+    <script src="/unity-builds/defcon_vmouse/Build/defcon_vmouse.loader.js"></script>
+    <script>
+      console.log('Starting Unity...');
+      
+      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        var meta = document.createElement('meta');
+        meta.name = 'viewport';
+        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+        document.getElementsByTagName('head')[0].appendChild(meta);
+
+        var canvas = document.querySelector("#unity-canvas");
+        canvas.style.width = "100%";
+        canvas.style.height = "100%";
+        canvas.style.position = "fixed";
+
+        document.body.style.textAlign = "left";
+      }
+
+      createUnityInstance(document.querySelector("#unity-canvas"), {
+        dataUrl: "/unity-builds/defcon_vmouse/Build/defcon_vmouse.data",
+        frameworkUrl: "/unity-builds/defcon_vmouse/Build/defcon_vmouse.framework.js",
+        codeUrl: "/unity-builds/defcon_vmouse/Build/defcon_vmouse.wasm",
+        symbolsUrl: "/unity-builds/defcon_vmouse/Build/defcon_vmouse.symbols.json",
+        streamingAssetsUrl: "/unity-builds/defcon_vmouse/StreamingAssets",
+        companyName: "CTCubed",
+        productName: "vMouse",
+        productVersion: "0.1",
+      }).then((unityInstance) => {
+        console.log('Unity loaded successfully!', unityInstance);
+      }).catch((error) => {
+        console.error('Unity failed to load:', error);
+      });
+    </script>
+  </body>
+</html>
