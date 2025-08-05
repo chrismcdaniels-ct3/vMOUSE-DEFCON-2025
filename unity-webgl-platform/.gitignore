@@ -46,3 +46,14 @@ dist/
 # Unity builds (large files)
 public/unity-builds/**/*
 !public/unity-builds/.gitkeep
+public/defcon_rover/
+public/unity-webgl/
+
+# Unity WebGL build files
+*.wasm
+*.data
+*.framework.js
+*.loader.js
+*.wasm.gz
+*.data.gz
+*.framework.js.gz
