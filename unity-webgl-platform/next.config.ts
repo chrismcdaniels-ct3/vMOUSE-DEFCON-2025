@@ -66,6 +66,16 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      // CORS headers for S3-loaded Unity content
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'Cross-Origin-Resource-Policy',
+            value: 'cross-origin',
+          },
+        ],
+      },
     ];
   },
   

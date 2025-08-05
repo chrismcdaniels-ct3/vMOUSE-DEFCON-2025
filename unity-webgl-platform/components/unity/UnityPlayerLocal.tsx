@@ -14,6 +14,8 @@ interface UnityPlayerLocalProps {
   onError?: (error: Error) => void
   className?: string
   canvasStyle?: React.CSSProperties
+  useS3?: boolean
+  s3BaseUrl?: string
 }
 
 export default function UnityPlayerLocal({
@@ -24,7 +26,9 @@ export default function UnityPlayerLocal({
   onLoaded,
   onError,
   className = '',
-  canvasStyle = {}
+  canvasStyle = {},
+  useS3 = false,
+  s3BaseUrl
 }: UnityPlayerLocalProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [loading, setLoading] = useState(true)
@@ -57,13 +61,16 @@ export default function UnityPlayerLocal({
       return
     }
 
-    const buildFolder = `${buildPath}/Build`
+    const baseUrl = useS3 && s3BaseUrl ? s3BaseUrl : ''
+    const buildFolder = useS3 ? `${baseUrl}/${gameName}/Build` : `${buildPath}/Build`
+    const streamingUrl = useS3 ? `${baseUrl}/${gameName}/StreamingAssets` : `${buildPath}/StreamingAssets`
+    
     const defaultConfig: UnityConfig = {
-      dataUrl: `${buildFolder}/${gameName}.data`,
-      frameworkUrl: `${buildFolder}/${gameName}.framework.js`,
-      codeUrl: `${buildFolder}/${gameName}.wasm`,
-      symbolsUrl: `${buildFolder}/${gameName}.symbols.json`,
-      streamingAssetsUrl: `${buildPath}/StreamingAssets`,
+      dataUrl: config.dataUrl || `${buildFolder}/${gameName}.data`,
+      frameworkUrl: config.frameworkUrl || `${buildFolder}/${gameName}.framework.js`,
+      codeUrl: config.codeUrl || `${buildFolder}/${gameName}.wasm`,
+      symbolsUrl: config.symbolsUrl || `${buildFolder}/${gameName}.symbols.json`,
+      streamingAssetsUrl: config.streamingAssetsUrl || streamingUrl,
       companyName: 'CTCubed',
       productName: 'vMouse',
       productVersion: '0.1',
@@ -117,15 +124,17 @@ export default function UnityPlayerLocal({
   return (
     <div className={`relative ${className}`}>
       <Script
-        src={config?.loaderUrl || `${buildPath}/Build/${gameName}.loader.js`}
+        src={config?.loaderUrl || (useS3 ? `${baseUrl}/${gameName}/Build/${gameName}.loader.js` : `${buildPath}/Build/${gameName}.loader.js`)}
         strategy="afterInteractive"
         onLoad={() => {
-          console.log(`Unity loader script loaded from: ${config?.loaderUrl || `${buildPath}/Build/${gameName}.loader.js`}`)
+          const loaderUrl = config?.loaderUrl || (useS3 ? `${baseUrl}/${gameName}/Build/${gameName}.loader.js` : `${buildPath}/Build/${gameName}.loader.js`)
+          console.log(`Unity loader script loaded from: ${loaderUrl}`)
           handleScriptLoad()
         }}
         onError={(e) => {
-          console.error(`Failed to load Unity loader script from: ${config?.loaderUrl || `${buildPath}/Build/${gameName}.loader.js`}`, e)
-          const error = new Error(`Failed to load Unity loader script: ${config?.loaderUrl || `${buildPath}/Build/${gameName}.loader.js`}`)
+          const loaderUrl = config?.loaderUrl || (useS3 ? `${baseUrl}/${gameName}/Build/${gameName}.loader.js` : `${buildPath}/Build/${gameName}.loader.js`)
+          console.error(`Failed to load Unity loader script from: ${loaderUrl}`, e)
+          const error = new Error(`Failed to load Unity loader script: ${loaderUrl}`)
           setError(error)
           setLoading(false)
           onError?.(error)

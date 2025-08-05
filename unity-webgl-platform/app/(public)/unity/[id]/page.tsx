@@ -15,6 +15,10 @@ export default function UnityGamePage() {
   const params = useParams()
   const gameId = params.id as string
   const [_loading, _setLoading] = useState(false)
+  
+  // S3 Configuration
+  const useS3 = process.env.NEXT_PUBLIC_UNITY_USE_S3 === 'true'
+  const s3BaseUrl = process.env.NEXT_PUBLIC_UNITY_CDN_URL || process.env.NEXT_PUBLIC_UNITY_BASE_URL || ''
 
   const handleUnityLoaded = (unityInstance: any) => {
     console.log('Unity game loaded successfully')
@@ -105,7 +109,18 @@ export default function UnityGamePage() {
             <UnityPlayerLocal
               gameName="defcon_drone"
               buildPath="/api/unity-gz"
-              config={{
+              useS3={useS3}
+              s3BaseUrl={s3BaseUrl}
+              config={useS3 ? {
+                dataUrl: `${s3BaseUrl}/defcon_drone/Build/defcon_drone.data.gz`,
+                frameworkUrl: `${s3BaseUrl}/defcon_drone/Build/defcon_drone.framework.js.gz`,
+                codeUrl: `${s3BaseUrl}/defcon_drone/Build/defcon_drone.wasm.gz`,
+                loaderUrl: `${s3BaseUrl}/defcon_drone/Build/defcon_drone.loader.js`,
+                streamingAssetsUrl: `${s3BaseUrl}/defcon_drone/StreamingAssets`,
+                companyName: 'CTCubed',
+                productName: 'vMOUSE',
+                productVersion: '0.1'
+              } : {
                 dataUrl: '/api/unity-gz/Build/defcon_drone.data.gz',
                 frameworkUrl: '/api/unity-gz/Build/defcon_drone.framework.js.gz',
                 codeUrl: '/api/unity-gz/Build/defcon_drone.wasm.gz',
@@ -128,6 +143,18 @@ export default function UnityGamePage() {
             <UnityPlayerLocal
               gameName="defcon_rover"
               buildPath="/defcon_rover"
+              useS3={useS3}
+              s3BaseUrl={s3BaseUrl}
+              config={useS3 ? {
+                dataUrl: `${s3BaseUrl}/defcon_rover/Build/defcon_rover.data`,
+                frameworkUrl: `${s3BaseUrl}/defcon_rover/Build/defcon_rover.framework.js`,
+                codeUrl: `${s3BaseUrl}/defcon_rover/Build/defcon_rover.wasm`,
+                loaderUrl: `${s3BaseUrl}/defcon_rover/Build/defcon_rover.loader.js`,
+                streamingAssetsUrl: `${s3BaseUrl}/defcon_rover/StreamingAssets`,
+                companyName: 'CTCubed',
+                productName: 'vMOUSE Rover',
+                productVersion: '0.1'
+              } : undefined}
               className="w-full flex justify-center"
               onLoaded={handleUnityLoaded}
               onError={(error) => {
