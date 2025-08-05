@@ -124,15 +124,15 @@ export default function UnityPlayerLocal({
   return (
     <div className={`relative ${className}`}>
       <Script
-        src={config?.loaderUrl || (useS3 ? `${baseUrl}/${gameName}/Build/${gameName}.loader.js` : `${buildPath}/Build/${gameName}.loader.js`)}
+        src={config?.loaderUrl || (useS3 ? `${s3BaseUrl}/${gameName}/Build/${gameName}.loader.js` : `${buildPath}/Build/${gameName}.loader.js`)}
         strategy="afterInteractive"
         onLoad={() => {
-          const loaderUrl = config?.loaderUrl || (useS3 ? `${baseUrl}/${gameName}/Build/${gameName}.loader.js` : `${buildPath}/Build/${gameName}.loader.js`)
+          const loaderUrl = config?.loaderUrl || (useS3 ? `${s3BaseUrl}/${gameName}/Build/${gameName}.loader.js` : `${buildPath}/Build/${gameName}.loader.js`)
           console.log(`Unity loader script loaded from: ${loaderUrl}`)
           handleScriptLoad()
         }}
         onError={(e) => {
-          const loaderUrl = config?.loaderUrl || (useS3 ? `${baseUrl}/${gameName}/Build/${gameName}.loader.js` : `${buildPath}/Build/${gameName}.loader.js`)
+          const loaderUrl = config?.loaderUrl || (useS3 ? `${s3BaseUrl}/${gameName}/Build/${gameName}.loader.js` : `${buildPath}/Build/${gameName}.loader.js`)
           console.error(`Failed to load Unity loader script from: ${loaderUrl}`, e)
           const error = new Error(`Failed to load Unity loader script: ${loaderUrl}`)
           setError(error)

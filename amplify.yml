@@ -10,8 +10,8 @@ frontend:
     build:
       commands:
         - export NODE_ENV=production
-        - echo "NEXT_PUBLIC_UNITY_USE_S3=$NEXT_PUBLIC_UNITY_USE_S3"
-        - echo "NEXT_PUBLIC_UNITY_BASE_URL=$NEXT_PUBLIC_UNITY_BASE_URL"
+        - echo "NEXT_PUBLIC_UNITY_USE_S3=${NEXT_PUBLIC_UNITY_USE_S3}"
+        - echo "NEXT_PUBLIC_UNITY_BASE_URL=${NEXT_PUBLIC_UNITY_BASE_URL}"
         - pnpm run build
         - echo "Build completed successfully"
         - ls -la .next/standalone || echo "Standalone output not found"
