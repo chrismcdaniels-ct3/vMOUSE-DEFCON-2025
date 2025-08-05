@@ -50,4 +50,6 @@ unity-webgl-platform/*.png
 unity-webgl-platform/homepage-debug.png
 unity-webgl-platform/unity-*.png
 
-# Keep only the Unity builds in public folder
+# Keep the Unity builds in public folder
+!unity-webgl-platform/public/defcon_rover/
+!unity-webgl-platform/public/unity-builds/
