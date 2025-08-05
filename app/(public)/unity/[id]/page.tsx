@@ -77,24 +77,6 @@ export default function UnityGamePage() {
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 py-8">
-        {/* Header */}
-        <div className="text-center mb-8 animate-fade-in">
-          <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
-            <span className={`bg-clip-text text-transparent bg-gradient-to-r ${
-              gameId === 'vmouse' 
-                ? 'from-orange-400 to-gray-400' 
-                : 'from-orange-400 to-gray-400'
-            }`}>
-              {gameId === 'vmouse' ? 'vMOUSE Drone' : 'vMOUSE Rover'}
-            </span>
-          </h1>
-          <p className="text-xl text-gray-300">
-            {gameId === 'vmouse' 
-              ? 'Precision Drone Piloting Experience' 
-              : 'Advanced Rover Control System'}
-          </p>
-        </div>
-        
         {/* Game Container */}
         <div className={`bg-gradient-to-br ${
           gameId === 'vmouse' 

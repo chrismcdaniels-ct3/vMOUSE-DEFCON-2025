@@ -165,7 +165,7 @@ export default function HomePage() {
             © 2025 CT Cubed Inc
           </p>
           <p className="text-gray-600 text-xs mt-2">
-            Built with cutting-edge WebGL technology
+            Developed by the experts at CT Cubed Inc. Interested in custom training? Let's talk.
           </p>
         </div>
       </div>
