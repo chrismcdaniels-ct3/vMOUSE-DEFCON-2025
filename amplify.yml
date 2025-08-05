@@ -17,6 +17,7 @@ frontend:
         - ls -la .next/standalone || echo "Standalone output not found"
         - cp -r public .next/standalone/
         - cp -r .next/static .next/standalone/.next/
+        - cp .next/required-server-files.json .next/standalone/
   artifacts:
     baseDirectory: .next/standalone
     files:
