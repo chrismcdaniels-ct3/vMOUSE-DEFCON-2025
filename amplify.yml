@@ -14,13 +14,8 @@ frontend:
         - echo "NEXT_PUBLIC_UNITY_BASE_URL=${NEXT_PUBLIC_UNITY_BASE_URL}"
         - pnpm run build
         - echo "Build completed successfully"
-        - ls -la .next/standalone || echo "Standalone output not found"
-        - cp -r public .next/standalone/
-        - cp -r .next/static .next/standalone/.next/
-        - cp .next/required-server-files.json .next/standalone/
-        - cp .next/*.nft.json .next/standalone/ || echo "No nft.json files found"
   artifacts:
-    baseDirectory: .next/standalone
+    baseDirectory: .next
     files:
       - '**/*'
   cache:
