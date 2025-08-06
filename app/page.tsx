@@ -77,18 +77,6 @@ export default function HomePage() {
                   Experience precision drone piloting in immersive virtual environments
                 </p>
                 
-                {/* Features */}
-                <div className="mt-6 flex flex-wrap gap-2">
-                  <span className="px-3 py-1 bg-orange-500/20 text-orange-300 text-sm rounded-full border border-orange-500/30">
-                    Real-time
-                  </span>
-                  <span className="px-3 py-1 bg-orange-500/20 text-orange-300 text-sm rounded-full border border-orange-500/30">
-                    3D Graphics
-                  </span>
-                  <span className="px-3 py-1 bg-orange-500/20 text-orange-300 text-sm rounded-full border border-orange-500/30">
-                    Precision Control
-                  </span>
-                </div>
                 
                 {/* Arrow indicator */}
                 <div className="mt-6 flex items-center text-orange-400 group-hover:text-orange-300 transition-colors">
@@ -134,18 +122,6 @@ export default function HomePage() {
                   Navigate challenging terrains with advanced rover control systems
                 </p>
                 
-                {/* Features */}
-                <div className="mt-6 flex flex-wrap gap-2">
-                  <span className="px-3 py-1 bg-orange-500/20 text-orange-300 text-sm rounded-full border border-orange-500/30">
-                    Physics-based
-                  </span>
-                  <span className="px-3 py-1 bg-orange-500/20 text-orange-300 text-sm rounded-full border border-orange-500/30">
-                    Terrain Mapping
-                  </span>
-                  <span className="px-3 py-1 bg-orange-500/20 text-orange-300 text-sm rounded-full border border-orange-500/30">
-                    Missions
-                  </span>
-                </div>
                 
                 {/* Arrow indicator */}
                 <div className="mt-6 flex items-center text-orange-400 group-hover:text-orange-300 transition-colors">

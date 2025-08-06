@@ -62,3 +62,6 @@ public/unity-webgl/
 amplify-deploy*.zip
 small-deployment.zip
 *.zip
+
+# credentials
+COGNITO_CREDENTIALS.md

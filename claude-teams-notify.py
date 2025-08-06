@@ -143,8 +143,7 @@ def monitor_claude_output():
 def test_notification():
     """Test Teams notification"""
     notifier = TeamsNotifier()
-    test_context = """
-Claude output example:
+    test_context = """Claude output example:
 
 What would you like to do?
 1. Create a new feature
