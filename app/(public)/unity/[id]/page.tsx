@@ -21,11 +21,10 @@ export default function UnityGamePage() {
   const s3BaseUrl = process.env.NEXT_PUBLIC_UNITY_CDN_URL || process.env.NEXT_PUBLIC_UNITY_BASE_URL || ''
 
   const handleUnityLoaded = (unityInstance: any) => {
-    console.log('Unity game loaded successfully')
     _setLoading(false)
     
     // Make Unity instance globally available for debugging
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
       (window as any).unityInstance = unityInstance
     }
   }
@@ -90,10 +89,14 @@ export default function UnityGamePage() {
               className="w-full flex justify-center"
               onLoaded={handleUnityLoaded}
               onError={(error) => {
-                console.error('Unity error:', error)
+                // Handle error silently in production
+                if (process.env.NODE_ENV === 'development') {
+                  console.error('Unity error:', error)
+                }
               }}
               onProgress={(progress) => {
-                console.log('Loading progress:', progress)
+                // Progress handled silently
+                void progress
               }}
             />
           ) : (
@@ -115,10 +118,14 @@ export default function UnityGamePage() {
               className="w-full flex justify-center"
               onLoaded={handleUnityLoaded}
               onError={(error) => {
-                console.error('Unity error:', error)
+                // Handle error silently in production
+                if (process.env.NODE_ENV === 'development') {
+                  console.error('Unity error:', error)
+                }
               }}
               onProgress={(progress) => {
-                console.log('Loading progress:', progress)
+                // Progress handled silently
+                void progress
               }}
             />
           )}

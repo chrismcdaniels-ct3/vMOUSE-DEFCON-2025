@@ -13,8 +13,6 @@ services:
       - .:/app
       # Exclude node_modules to use container's dependencies
       - /app/node_modules
-      # Mount AWS credentials if needed
-      - ~/.aws:/home/nextjs/.aws:ro
       # Mount pnpm store for faster installs
       - pnpm-store:/app/.pnpm-store
     ports:
