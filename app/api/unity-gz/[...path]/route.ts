@@ -65,7 +65,7 @@ export async function GET(
       status: 200,
       headers,
     })
-  } catch (error) {
+  } catch {
     // Don't expose internal error details
     return NextResponse.json(
       { error: 'File not found' },
