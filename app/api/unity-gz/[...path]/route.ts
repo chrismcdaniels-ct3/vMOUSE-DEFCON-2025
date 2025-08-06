@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { readFile } from 'fs/promises'
 import path from 'path'
+import { normalize, isAbsolute } from 'path'
 
 export async function GET(
   request: NextRequest,
@@ -10,11 +11,32 @@ export async function GET(
     const { path: pathSegments } = await params
     const filePath = pathSegments.join('/')
     
+    // Sanitize and validate the path
+    const normalizedPath = normalize(filePath)
+    
+    // Check for path traversal attempts
+    if (normalizedPath.includes('..') || isAbsolute(normalizedPath)) {
+      return NextResponse.json(
+        { error: 'Invalid path' },
+        { status: 400 }
+      )
+    }
+    
     // Construct the full file path
-    const fullPath = path.join(process.cwd(), 'public', 'unity-builds', 'defcon_drone_gz', filePath)
+    const fullPath = path.join(process.cwd(), 'public', 'unity-builds', 'defcon_drone_gz', normalizedPath)
+    const resolvedPath = path.resolve(fullPath)
+    const allowedDir = path.resolve(path.join(process.cwd(), 'public', 'unity-builds', 'defcon_drone_gz'))
+    
+    // Ensure the resolved path is within the allowed directory
+    if (!resolvedPath.startsWith(allowedDir)) {
+      return NextResponse.json(
+        { error: 'Access denied' },
+        { status: 403 }
+      )
+    }
     
     // Read the file
-    const fileBuffer = await readFile(fullPath)
+    const fileBuffer = await readFile(resolvedPath)
     
     // Determine content type based on file extension
     let contentType = 'application/octet-stream'
@@ -44,7 +66,7 @@ export async function GET(
       headers,
     })
   } catch (error) {
-    console.error('Error serving Unity file:', error)
+    // Don't expose internal error details
     return NextResponse.json(
       { error: 'File not found' },
       { status: 404 }

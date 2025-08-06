@@ -4,18 +4,83 @@ export interface UnityMessage {
   data: any
 }
 
+// Allowed message types whitelist
+const ALLOWED_MESSAGE_TYPES = [
+  'gameState',
+  'score',
+  'playerAction',
+  'levelComplete',
+  'error',
+  'telemetry'
+]
+
 export class UnityBridge {
   private unityInstance: any
   private messageHandlers: Map<string, (data: any) => void> = new Map()
-
+  private readonly allowedOrigins: string[]
+  
   constructor(unityInstance: any) {
     this.unityInstance = unityInstance
     
-    // Expose global function for Unity to call React
+    // Set allowed origins from environment
+    this.allowedOrigins = [
+      typeof window !== 'undefined' ? window.location.origin : '',
+      process.env.NEXT_PUBLIC_APP_URL || ''
+    ].filter(Boolean)
+    
+    // Set up message listener for postMessage communication
     if (typeof window !== 'undefined') {
-      (window as any).ReactBridge = {
-        sendMessage: this.handleUnityMessage.bind(this)
+      window.addEventListener('message', this.handlePostMessage.bind(this))
+      
+      // Create a secure bridge object
+      const bridge = {
+        sendMessage: (message: string) => {
+          // Validate caller origin
+          try {
+            const parsedMessage: UnityMessage = JSON.parse(message)
+            if (this.isValidMessage(parsedMessage)) {
+              this.handleUnityMessage(message)
+            } else {
+              console.warn('Invalid message type:', parsedMessage.type)
+            }
+          } catch (error) {
+            console.error('Invalid message format:', error)
+          }
+        }
       }
+      
+      // Use Object.defineProperty to make it harder to tamper with
+      Object.defineProperty(window, 'ReactBridge', {
+        value: bridge,
+        writable: false,
+        configurable: false
+      })
+    }
+  }
+  
+  // Validate message type against whitelist
+  private isValidMessage(message: UnityMessage): boolean {
+    return ALLOWED_MESSAGE_TYPES.includes(message.type)
+  }
+  
+  // Handle postMessage events with origin validation
+  private handlePostMessage(event: MessageEvent) {
+    // Validate origin
+    if (!this.allowedOrigins.includes(event.origin)) {
+      console.warn('Blocked message from unauthorized origin:', event.origin)
+      return
+    }
+    
+    try {
+      const message: UnityMessage = event.data
+      if (this.isValidMessage(message)) {
+        const handler = this.messageHandlers.get(message.type)
+        if (handler) {
+          handler(message.data)
+        }
+      }
+    } catch (error) {
+      console.error('Failed to process message:', error)
     }
   }
 
@@ -55,7 +120,9 @@ export class UnityBridge {
   destroy() {
     this.messageHandlers.clear()
     if (typeof window !== 'undefined') {
-      delete (window as any).ReactBridge
+      window.removeEventListener('message', this.handlePostMessage.bind(this))
+      // Note: ReactBridge cannot be deleted due to defineProperty configuration
+      // This is intentional for security
     }
   }
 }

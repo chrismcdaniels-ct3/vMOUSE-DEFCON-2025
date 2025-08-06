@@ -160,43 +160,6 @@ export default function UnityGamePage() {
           </div>
         )}
 
-        {/* Game Information */}
-        <div className={`mt-8 bg-gradient-to-br ${
-          gameId === 'vmouse' 
-            ? 'from-gray-900/40 to-gray-800/30' 
-            : 'from-gray-900/40 to-gray-800/30'
-        } backdrop-blur-xl rounded-3xl p-6 border ${
-          gameId === 'vmouse' 
-            ? 'border-orange-500/20' 
-            : 'border-orange-500/20'
-        } shadow-2xl animate-fade-in animation-delay-3000`}>
-          <h2 className="text-2xl font-bold text-white mb-4 flex items-center justify-center">
-            <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            Game Information
-          </h2>
-          <div className="grid md:grid-cols-3 gap-6 text-center">
-            <div>
-              <h3 className={`text-sm font-medium ${
-                gameId === 'vmouse' ? 'text-orange-400' : 'text-orange-400'
-              }`}>Platform</h3>
-              <p className="text-gray-300">Unity WebGL Platform</p>
-            </div>
-            <div>
-              <h3 className={`text-sm font-medium ${
-                gameId === 'vmouse' ? 'text-orange-400' : 'text-orange-400'
-              }`}>Version</h3>
-              <p className="text-gray-300">DEF CON Edition 2025.v0.1</p>
-            </div>
-            <div>
-              <h3 className={`text-sm font-medium ${
-                gameId === 'vmouse' ? 'text-orange-400' : 'text-orange-400'
-              }`}>Mode</h3>
-              <p className="text-gray-300">CTF Single Player</p>
-            </div>
-          </div>
-        </div>
 
         {/* Back to Home */}
         <div className="mt-8 text-center animate-fade-in animation-delay-4000">

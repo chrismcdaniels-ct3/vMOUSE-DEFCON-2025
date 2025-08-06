@@ -5,9 +5,11 @@ import Image from 'next/image'
 import { useState, useEffect } from 'react'
 
 export default function HomePage() {
+  const [mounted, setMounted] = useState(false)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   
   useEffect(() => {
+    setMounted(true)
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY })
     }
@@ -49,7 +51,7 @@ export default function HomePage() {
             <div 
               className="relative bg-gradient-to-br from-gray-900/50 to-gray-800/30 backdrop-blur-xl rounded-3xl p-8 border border-orange-500/20 shadow-2xl transition-all duration-500 hover:scale-105 hover:shadow-orange-500/25 hover:border-orange-400/40"
               style={{
-                transform: typeof window !== 'undefined' 
+                transform: mounted && typeof window !== 'undefined' 
                   ? `perspective(1000px) rotateY(${(mousePosition.x - window.innerWidth / 2) * 0.01}deg) rotateX(${-(mousePosition.y - window.innerHeight / 2) * 0.01}deg)`
                   : 'perspective(1000px)'
               }}
@@ -94,7 +96,7 @@ export default function HomePage() {
             <div 
               className="relative bg-gradient-to-br from-gray-900/50 to-gray-800/30 backdrop-blur-xl rounded-3xl p-8 border border-orange-500/20 shadow-2xl transition-all duration-500 hover:scale-105 hover:shadow-orange-500/25 hover:border-orange-400/40"
               style={{
-                transform: typeof window !== 'undefined' 
+                transform: mounted && typeof window !== 'undefined' 
                   ? `perspective(1000px) rotateY(${(mousePosition.x - window.innerWidth / 2) * 0.01}deg) rotateX(${-(mousePosition.y - window.innerHeight / 2) * 0.01}deg)`
                   : 'perspective(1000px)'
               }}
@@ -143,32 +145,26 @@ export default function HomePage() {
           <p className="text-gray-600 text-xs mt-2">
             Developed by the experts at CT Cubed Inc. Interested in custom training? Let&apos;s talk.
           </p>
-          {/* Hidden admin link - keyboard shortcut: Ctrl+Shift+A */}
-          <Link 
-            href="/admin" 
-            className="inline-block mt-4 text-gray-900 hover:text-gray-800 text-xs opacity-0 hover:opacity-10 transition-opacity"
-            aria-hidden="true"
-          >
-            Admin
-          </Link>
         </div>
       </div>
 
       {/* Particle effects */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-white rounded-full opacity-20 animate-float"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 10}s`,
-              animationDuration: `${10 + Math.random() * 20}s`
-            }}
-          />
-        ))}
-      </div>
+      {mounted && (
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {[...Array(20)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-1 bg-white rounded-full opacity-20 animate-float"
+              style={{
+                left: `${(i * 5.263) % 100}%`,
+                top: `${(i * 7.919) % 100}%`,
+                animationDelay: `${(i * 0.5) % 10}s`,
+                animationDuration: `${10 + (i * 1.5) % 20}s`
+              }}
+            />
+          ))}
+        </div>
+      )}
     </div>
   )
 }
