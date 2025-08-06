@@ -24,35 +24,10 @@ export default function UnityGamePage() {
     console.log('Unity game loaded successfully')
     _setLoading(false)
     
-    // Make Unity instance globally available
+    // Make Unity instance globally available for debugging
     if (typeof window !== 'undefined') {
       (window as any).unityInstance = unityInstance
     }
-    
-    // Try automation with defcon_vmouse specific patterns
-    setTimeout(() => {
-      if (unityInstance && unityInstance.SendMessage) {
-        console.log('Setting up game configuration...')
-        
-        // Based on the symbols found in defcon builds
-        unityInstance.SendMessage('Player', 'SetPlayerNameProperty', 'AutoPilot')
-        unityInstance.SendMessage('GameManager', 'StartGame', '')
-        
-        // Handle both drone and rover
-        if (gameId === 'vmouse') {
-          unityInstance.SendMessage('DroneSelection', 'RefreshSelection', '')
-        } else if (gameId === 'vrover') {
-          unityInstance.SendMessage('RoverSelection', 'RefreshSelection', '')
-        }
-        
-        unityInstance.SendMessage('LobbyMainPanel', 'OnStartGameButtonClicked', '')
-        
-        // Standard attempts
-        unityInstance.SendMessage('SetupUIScript', 'SetNickname', 'AutoPilot')
-        unityInstance.SendMessage('SetupUIScript', 'SetRoomName', gameId === 'vmouse' ? 'DroneRoom' : 'RoverRoom')
-        unityInstance.SendMessage('SetupUIScript', 'AutoJoinTeam', '')
-      }
-    }, 2000)
   }
 
   return (
