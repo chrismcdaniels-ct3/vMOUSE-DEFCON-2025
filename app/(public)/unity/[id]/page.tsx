@@ -63,29 +63,20 @@ export default function UnityGamePage() {
         } shadow-2xl animate-fade-in animation-delay-1000`}>
           {gameId === 'vmouse' ? (
             <UnityPlayerLocal
-              gameName="defcon_drone"
-              buildPath="/api/unity-gz"
+              gameName="defcon_vmouse"
+              buildPath="/defcon_vmouse"
               useS3={useS3}
               s3BaseUrl={s3BaseUrl}
               config={useS3 ? {
-                dataUrl: `${s3BaseUrl}/defcon_drone/Build/defcon_drone.data.gz`,
-                frameworkUrl: `${s3BaseUrl}/defcon_drone/Build/defcon_drone.framework.js.gz`,
-                codeUrl: `${s3BaseUrl}/defcon_drone/Build/defcon_drone.wasm.gz`,
-                loaderUrl: `${s3BaseUrl}/defcon_drone/Build/defcon_drone.loader.js`,
-                streamingAssetsUrl: `${s3BaseUrl}/defcon_drone/StreamingAssets`,
+                dataUrl: `${s3BaseUrl}/defcon_vmouse/Build/defcon_vmouse.data.gz`,
+                frameworkUrl: `${s3BaseUrl}/defcon_vmouse/Build/defcon_vmouse.framework.js.gz`,
+                codeUrl: `${s3BaseUrl}/defcon_vmouse/Build/defcon_vmouse.wasm.gz`,
+                loaderUrl: `${s3BaseUrl}/defcon_vmouse/Build/defcon_vmouse.loader.js`,
+                streamingAssetsUrl: `${s3BaseUrl}/defcon_vmouse/StreamingAssets`,
                 companyName: 'CTCubed',
                 productName: 'vMOUSE',
                 productVersion: '0.1'
-              } : {
-                dataUrl: '/api/unity-gz/Build/defcon_drone.data.gz',
-                frameworkUrl: '/api/unity-gz/Build/defcon_drone.framework.js.gz',
-                codeUrl: '/api/unity-gz/Build/defcon_drone.wasm.gz',
-                loaderUrl: '/api/unity-gz/Build/defcon_drone.loader.js',
-                streamingAssetsUrl: '/api/unity-gz/StreamingAssets',
-                companyName: 'CTCubed',
-                productName: 'vMOUSE',
-                productVersion: '0.1'
-              }}
+              } : undefined}
               className="w-full flex justify-center"
               onLoaded={handleUnityLoaded}
               onError={(error) => {
