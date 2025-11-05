@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "DEF CON Unity Platform | CT Cubed Inc",
-  description: "Unity WebGL Platform for DEF CON vMOUSE and vROVER - © 2025 CT Cubed Inc",
+  title: "CMM Training - vMOUSE Drone | CT Cubed Inc",
+  description: "Cybersecurity Maturation Methodology (CMM) vMOUSE Drone Familiarization Training - © 2025 CT Cubed Inc",
 };
 
 export default function RootLayout({

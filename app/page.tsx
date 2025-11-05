@@ -38,97 +38,58 @@ export default function HomePage() {
         <div className="text-center mb-16 animate-fade-in">
           <h1 className="text-7xl md:text-8xl font-bold text-white mb-4 tracking-tight">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-gray-400">
-              DEFCON
+              CMM Training
             </span>
           </h1>
+          <p className="text-xl md:text-2xl text-gray-400 mt-6 max-w-3xl mx-auto">
+            Welcome to the Cybersecurity Maturation Methodology (CMM) training platform.
+            Get your familiarization ride with the vMOUSE drone simulator.
+          </p>
           <div className="mt-4 h-1 w-32 bg-gradient-to-r from-orange-400 to-gray-400 mx-auto rounded-full" />
         </div>
 
         {/* Game cards */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl w-full">
-          {/* vMOUSE Card */}
-          <Link href="/unity/vmouse" className="group">
-            <div 
+        <div className="flex justify-center max-w-2xl w-full">
+          {/* vMOUSE Drone Card */}
+          <Link href="/unity/vmouse" className="group w-full">
+            <div
               className="relative bg-gradient-to-br from-gray-900/50 to-gray-800/30 backdrop-blur-xl rounded-3xl p-8 border border-orange-500/20 shadow-2xl transition-all duration-500 hover:scale-105 hover:shadow-orange-500/25 hover:border-orange-400/40"
               style={{
-                transform: mounted && typeof window !== 'undefined' 
+                transform: mounted && typeof window !== 'undefined'
                   ? `perspective(1000px) rotateY(${(mousePosition.x - window.innerWidth / 2) * 0.01}deg) rotateX(${-(mousePosition.y - window.innerHeight / 2) * 0.01}deg)`
                   : 'perspective(1000px)'
               }}
             >
               {/* Glow effect */}
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-orange-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              
+
               {/* Image */}
-              <div className="relative h-64 w-full mb-6 rounded-2xl overflow-hidden bg-gradient-to-br from-orange-600/20 to-gray-800/20">
+              <div className="relative h-80 w-full mb-6 rounded-2xl overflow-hidden bg-gradient-to-br from-orange-600/20 to-gray-800/20">
                 <Image
                   src="/mouse-drone.png"
-                  alt="vMOUSE Drone"
+                  alt="vMOUSE Drone Familiarization Training"
                   fill
                   className="object-contain p-4 group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
               </div>
-              
+
               {/* Content */}
-              <div className="relative">
-                <h2 className="text-4xl font-bold text-white mb-3 group-hover:text-orange-300 transition-colors">
+              <div className="relative text-center">
+                <h2 className="text-5xl font-bold text-white mb-4 group-hover:text-orange-300 transition-colors">
                   vMOUSE Drone
                 </h2>
+                <h3 className="text-2xl font-semibold text-orange-400 mb-4">
+                  Familiarization Training
+                </h3>
                 <p className="text-gray-400 text-lg leading-relaxed group-hover:text-gray-300 transition-colors">
-                  Experience precision drone piloting in immersive virtual environments
+                  Begin your journey with hands-on drone simulator training. Master the fundamentals of precision flight control and situational awareness in a safe, virtual environment.
                 </p>
-                
-                
-                {/* Arrow indicator */}
-                <div className="mt-6 flex items-center text-orange-400 group-hover:text-orange-300 transition-colors">
-                  <span className="text-sm font-medium">Launch Game</span>
-                  <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </Link>
 
-          {/* vROVER Card */}
-          <Link href="/unity/vrover" className="group">
-            <div 
-              className="relative bg-gradient-to-br from-gray-900/50 to-gray-800/30 backdrop-blur-xl rounded-3xl p-8 border border-orange-500/20 shadow-2xl transition-all duration-500 hover:scale-105 hover:shadow-orange-500/25 hover:border-orange-400/40"
-              style={{
-                transform: mounted && typeof window !== 'undefined' 
-                  ? `perspective(1000px) rotateY(${(mousePosition.x - window.innerWidth / 2) * 0.01}deg) rotateX(${-(mousePosition.y - window.innerHeight / 2) * 0.01}deg)`
-                  : 'perspective(1000px)'
-              }}
-            >
-              {/* Glow effect */}
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-orange-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              
-              {/* Image */}
-              <div className="relative h-64 w-full mb-6 rounded-2xl overflow-hidden bg-gradient-to-br from-orange-600/20 to-gray-800/20">
-                <Image
-                  src="/mouse-rover.png"
-                  alt="vMOUSE Rover"
-                  fill
-                  className="object-contain p-4 group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-              </div>
-              
-              {/* Content */}
-              <div className="relative">
-                <h2 className="text-4xl font-bold text-white mb-3 group-hover:text-orange-300 transition-colors">
-                  vMOUSE Rover
-                </h2>
-                <p className="text-gray-400 text-lg leading-relaxed group-hover:text-gray-300 transition-colors">
-                  Navigate challenging terrains with advanced rover control systems
-                </p>
-                
-                
                 {/* Arrow indicator */}
-                <div className="mt-6 flex items-center text-orange-400 group-hover:text-orange-300 transition-colors">
-                  <span className="text-sm font-medium">Launch Game</span>
-                  <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="mt-8 flex items-center justify-center text-orange-400 group-hover:text-orange-300 transition-colors">
+                  <span className="text-lg font-medium">Start Your Familiarization Ride</span>
+                  <svg className="w-6 h-6 ml-2 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </div>
